@@ -1,0 +1,34 @@
+ROWS = 10
+COLS = 10
+CONNECT_N = 4
+
+EMPTY = 0
+HUMAN = -1
+AI = +1
+
+# UI layout
+CELL = 64
+PADDING = 64
+BOTTOM_MARGIN = 16
+WIDTH = COLS * CELL
+HEIGHT = PADDING + ROWS * CELL + BOTTOM_MARGIN
+FPS = 60
+
+# AI search settings
+AI_TIME_LIMIT_S = 2.0   # seconds per AI move (iterative deepening)
+AI_MAX_DEPTH = 12       # hard cap
+WIN_SCORE = 10**9
+
+# Colors
+BG = (18, 18, 20)
+GRID = (35, 37, 45)
+HOLE = (22, 24, 28)
+DISC_AI = (240, 208, 0)
+DISC_HUMAN = (220, 68, 68)
+WHITE = (235, 235, 235)
+MUTED = (170, 180, 190)
+ACCENT = (120, 200, 255)
+WIN_HILITE = (90, 240, 120)
+GHOST = (120, 120, 120)
+
+CENTER_COL = (COLS - 1) / 2.0
