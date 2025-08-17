@@ -30,11 +30,6 @@ W_WINDOW_HUMAN_2E2 = -50
 W_WINDOW_AI_1E3  = 5
 W_WINDOW_HUMAN_1E3 = -6
 
-# Centering bias (small nudges used in evaluation)
-CENTER_COL_BONUS_BASE = 3
-CENTER_ROW_BONUS_BASE = 2
-CENTER_ROW_BONUS_DIV  = 2.0
-
 # Colors
 BG = (18, 18, 20)
 GRID = (35, 37, 45)

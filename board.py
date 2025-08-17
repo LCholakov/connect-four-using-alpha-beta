@@ -1,8 +1,8 @@
 from typing import List, Optional, Tuple
-from constants import (ROWS, COLS, CONNECT_N, EMPTY, HUMAN, AI, CENTER_COL,
+from constants import (
+    ROWS, COLS, CONNECT_N, EMPTY, HUMAN, AI,
     W_WINDOW_AI_4, W_WINDOW_HUMAN_4, W_WINDOW_AI_3E1, W_WINDOW_HUMAN_3E1,
-    W_WINDOW_AI_2E2, W_WINDOW_HUMAN_2E2, W_WINDOW_AI_1E3, W_WINDOW_HUMAN_1E3,
-    CENTER_COL_BONUS_BASE, CENTER_ROW_BONUS_BASE, CENTER_ROW_BONUS_DIV
+    W_WINDOW_AI_2E2, W_WINDOW_HUMAN_2E2, W_WINDOW_AI_1E3, W_WINDOW_HUMAN_1E3
 )
 
 class Board:
@@ -84,15 +84,6 @@ class Board:
 
     def evaluate(self) -> int:
         score = 0
-        # modest center preference
-        for r in range(ROWS):
-            for c in range(COLS):
-                piece = self.grid[r][c]
-                if piece == EMPTY:
-                    continue
-                col_bonus = CENTER_COL_BONUS_BASE - abs(c - CENTER_COL)
-                row_bonus = CENTER_ROW_BONUS_BASE - abs((r - (ROWS - 1) / 2.0)) / CENTER_ROW_BONUS_DIV
-                score += (1 if piece == AI else -1) * int(col_bonus + row_bonus)
 
         def window_score(window: List[int]) -> int:
             count_ai = window.count(AI)

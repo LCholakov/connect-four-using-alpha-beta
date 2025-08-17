@@ -1,7 +1,7 @@
 import math
 import time
 from typing import List, Optional, Tuple
-from constants import AI_TIME_LIMIT_S, AI_MAX_DEPTH, WIN_SCORE, AI, HUMAN, CENTER_COL
+from constants import AI_TIME_LIMIT_S, AI_MAX_DEPTH, WIN_SCORE, AI
 from board import Board
 
 class TimeUp(Exception):
@@ -30,7 +30,7 @@ class AIEngine:
         if not valid:
             return 0, {"depth": 0, "nodes": 0, "nps": 0.0, "time": 0.0, "score": 0, "pv": []}
 
-        ordered_seed = sorted(valid, key=lambda c: abs(c - CENTER_COL))
+        ordered_seed = valid[:]
 
         try:
             for depth in range(1, self.max_depth + 1):
@@ -71,8 +71,6 @@ class AIEngine:
         if order_hint:
             hint_set = set(order_hint)
             moves = [m for m in order_hint if m in moves] + [m for m in moves if m not in hint_set]
-        else:
-            moves = sorted(moves, key=lambda c: abs(c - CENTER_COL))
 
         for col in moves:
             row = board.drop(col, player)
