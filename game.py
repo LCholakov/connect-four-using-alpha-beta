@@ -24,7 +24,7 @@ class Game:
         self.current_player = HUMAN
         self.game_over = False
         self.winner: Optional[int] = None
-        self.ai_stats = {"depth": 0, "nodes": 0, "nps": 0.0, "time": 0.0, "score": 0}
+        self.ai_stats = {"depth": 0, "nodes": 0, "nps": 0.0, "time": 0.0, "score": 0, "pv": []}
         self.ghost_col: Optional[int] = None
 
     def _draw_text(self, text: str, x: int, y: int, color, big: bool = False, align_right: bool = False):
@@ -53,6 +53,11 @@ class Game:
         stats_line = f"Depth {self.ai_stats['depth']} | Nodes {self.ai_stats['nodes']} | " \
                      f"NPS {self.ai_stats['nps']:.0f} | Time {self.ai_stats['time']:.2f}s"
         self._draw_text(stats_line, WIDTH - 12, 10, MUTED, align_right=True)
+        pv_list = self.ai_stats.get("pv", [])
+        if pv_list:
+            pv_str = " → ".join(map(str, pv_list[:8]))
+            self._draw_text(f"PV {pv_str}", WIDTH - 12, 42, MUTED, align_right=True)
+
 
         top = PADDING
         for r in range(ROWS):

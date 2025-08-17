@@ -15,9 +15,25 @@ HEIGHT = PADDING + ROWS * CELL + BOTTOM_MARGIN
 FPS = 60
 
 # AI search settings
-AI_TIME_LIMIT_S = 2.0   # seconds per AI move (iterative deepening)
-AI_MAX_DEPTH = 12       # hard cap
-WIN_SCORE = 10**9
+AI_TIME_LIMIT_S = 2.0 #float("inf") # def 2.0
+AI_MAX_DEPTH = 15 # def 12
+WIN_SCORE = 10**9 # def 10**9
+
+# Evaluation weights (board heuristics)
+# Window scoring: counts over 4-cell windows [AI/HUMAN/EMPTY]
+W_WINDOW_AI_4    = 50000
+W_WINDOW_HUMAN_4 = -50000
+W_WINDOW_AI_3E1  = 200
+W_WINDOW_HUMAN_3E1 = -220
+W_WINDOW_AI_2E2  = 40
+W_WINDOW_HUMAN_2E2 = -50
+W_WINDOW_AI_1E3  = 5
+W_WINDOW_HUMAN_1E3 = -6
+
+# Centering bias (small nudges used in evaluation)
+CENTER_COL_BONUS_BASE = 3
+CENTER_ROW_BONUS_BASE = 2
+CENTER_ROW_BONUS_DIV  = 2.0
 
 # Colors
 BG = (18, 18, 20)

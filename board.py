@@ -1,5 +1,9 @@
 from typing import List, Optional, Tuple
-from constants import ROWS, COLS, CONNECT_N, EMPTY, HUMAN, AI, CENTER_COL
+from constants import (ROWS, COLS, CONNECT_N, EMPTY, HUMAN, AI, CENTER_COL,
+    W_WINDOW_AI_4, W_WINDOW_HUMAN_4, W_WINDOW_AI_3E1, W_WINDOW_HUMAN_3E1,
+    W_WINDOW_AI_2E2, W_WINDOW_HUMAN_2E2, W_WINDOW_AI_1E3, W_WINDOW_HUMAN_1E3,
+    CENTER_COL_BONUS_BASE, CENTER_ROW_BONUS_BASE, CENTER_ROW_BONUS_DIV
+)
 
 class Board:
     def __init__(self):
@@ -86,8 +90,8 @@ class Board:
                 piece = self.grid[r][c]
                 if piece == EMPTY:
                     continue
-                col_bonus = 3 - abs(c - CENTER_COL)
-                row_bonus = 2 - abs((r - (ROWS - 1) / 2.0)) / 2.0
+                col_bonus = CENTER_COL_BONUS_BASE - abs(c - CENTER_COL)
+                row_bonus = CENTER_ROW_BONUS_BASE - abs((r - (ROWS - 1) / 2.0)) / CENTER_ROW_BONUS_DIV
                 score += (1 if piece == AI else -1) * int(col_bonus + row_bonus)
 
         def window_score(window: List[int]) -> int:
@@ -97,21 +101,21 @@ class Board:
             if count_ai > 0 and count_human > 0:
                 return 0
             if count_ai == 4:
-                return 50000
+                return W_WINDOW_AI_4
             if count_human == 4:
-                return -50000
+                return W_WINDOW_HUMAN_4
             if count_ai == 3 and count_empty == 1:
-                return 200
+                return W_WINDOW_AI_3E1
             if count_human == 3 and count_empty == 1:
-                return -220
+                return W_WINDOW_HUMAN_3E1
             if count_ai == 2 and count_empty == 2:
-                return 40
+                return W_WINDOW_AI_2E2
             if count_human == 2 and count_empty == 2:
-                return -50
+                return W_WINDOW_HUMAN_2E2
             if count_ai == 1 and count_empty == 3:
-                return 5
+                return W_WINDOW_AI_1E3
             if count_human == 1 and count_empty == 3:
-                return -6
+                return W_WINDOW_HUMAN_1E3
             return 0
 
         # Horizontal
