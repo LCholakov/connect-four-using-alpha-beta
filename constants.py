@@ -16,7 +16,7 @@ FPS = 60
 
 # AI search settings
 AI_TIME_LIMIT_S = 2.0 #float("inf") # def 2.0
-AI_MAX_DEPTH = 15 # def 12
+AI_MAX_DEPTH = 12 # def 12
 WIN_SCORE = 10**9 # def 10**9
 
 # Evaluation weights (board heuristics)
