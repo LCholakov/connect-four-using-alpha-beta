@@ -5,7 +5,7 @@ from typing import Optional
 from constants import (
     ROWS, COLS, EMPTY, HUMAN, AI,
     CELL, PADDING, BOTTOM_MARGIN, WIDTH, HEIGHT, FPS,
-    BG, GRID, HOLE, DISC_AI, DISC_HUMAN, WHITE, MUTED, WIN_HILITE, GHOST,
+    BG, GRID, HOLE, DISC_AI, DISC_HUMAN, TEXT_MAIN, TEXT_MUTED, WIN_HILITE, GHOST,
 )
 from board import Board
 from ai import AIEngine
@@ -48,15 +48,15 @@ class Game:
                 "AI wins! Press R to restart." if self.winner == AI else
                 "Draw. Press R to restart."
             )
-        self._draw_text(status, 12, 32, WHITE, big=True)
+        self._draw_text(status, 12, 32, TEXT_MAIN, big=True)
 
         stats_line = f"Depth {self.ai_stats['depth']} | Nodes {self.ai_stats['nodes']} | " \
                      f"NPS {self.ai_stats['nps']:.0f} | Time {self.ai_stats['time']:.2f}s"
-        self._draw_text(stats_line, WIDTH - 12, 10, MUTED, align_right=True)
+        self._draw_text(stats_line, WIDTH - 12, 10, TEXT_MUTED, align_right=True)
         pv_list = self.ai_stats.get("pv", [])
         if pv_list:
             pv_str = " → ".join(map(str, pv_list[:8]))
-            self._draw_text(f"PV {pv_str}", WIDTH - 12, 42, MUTED, align_right=True)
+            self._draw_text(f"PV {pv_str}", WIDTH - 12, 42, TEXT_MUTED, align_right=True)
 
 
         top = PADDING
@@ -133,9 +133,9 @@ class Game:
             self.screen.fill(BG)
             title = "Connect Four 10x10"
             sub = "Press H — You start   |   Press A — AI starts"
-            self._draw_text(title, WIDTH // 2 - 180, HEIGHT // 2 - 100, WHITE, big=True)
-            self._draw_text(sub, WIDTH // 2 - 260, HEIGHT // 2 - 50, MUTED)
-            self._draw_text("R to restart any time • ESC to quit", WIDTH // 2 - 210, HEIGHT // 2 + 10, MUTED)
+            self._draw_text(title, WIDTH // 2 - 180, HEIGHT // 2 - 100, TEXT_MAIN, big=True)
+            self._draw_text(sub, WIDTH // 2 - 260, HEIGHT // 2 - 50, TEXT_MUTED)
+            self._draw_text("R to restart any time • ESC to quit", WIDTH // 2 - 210, HEIGHT // 2 + 10, TEXT_MUTED)
             pygame.display.flip()
             self.clock.tick(FPS)
 
